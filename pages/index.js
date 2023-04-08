@@ -1,73 +1,185 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
-
+import { Inter, Questrial, Poppins } from "next/font/google";
+import { FaPlay } from "react-icons/fa";
+import { RiCheckboxCircleFill } from "react-icons/ri";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { AppContext } from "../context/AppContext";
+import {useContext} from "react";
+const inter = Inter({ subsets: ["latin"] });
+const questrial = Questrial({ subsets: ["latin"], weight: "400" });
+const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 export default function Home() {
+  const { account, connectWallet, error } = useContext(AppContext);
   return (
-    <div class="flex flex-col min-h-screen justify-between bg-zinc-950">
-
-      <div class="flex flex-row justify-between bg-zinc-950 mt-3 ml-11  ">
-        <div className=" ">
-          <img className=" h-24 rounded-full" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""></img>
+    <div className="flex overflow-hidden flex-col min-h-screen justify-between bg-gradient-to-br from-[#080808] to-black text-white space-y-10">
+      <div className="flex flex-row justify-center mt-3 ml-11 mr-11  ">
+        <div className="mr-10">
+          <img className="h-10 rounded-sm" src="/bytepng.png" alt=""></img>
         </div>
-        <div class=" xl:w-96 mt-4 ">
-          <div class="relative  flex w-full flex-wrap items-stretch">
-            <input
-              type="search"
-              class="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:text-neutral-200 dark:placeholder:text-neutral-200"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="button-addon1" />
-            <button
-              class="relative z-[2] flex items-center rounded-r bg-primary px-6 py-2.5 text-xs font-medium uppercase leading-tight text-white shadow-md transition duration-150 ease-in-out hover:bg-primary-700 hover:shadow-lg focus:bg-primary-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-primary-800 active:shadow-lg"
-              type="button"
-              id="button-addon1"
-              data-te-ripple-init
-              data-te-ripple-color="light">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="h-5 w-5">
-                <path
-                  fill-rule="evenodd"
-                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                  clip-rule="evenodd" />
-              </svg>
-            </button>
+        <div className="grow flex-row flex">
+          <div className="flex grow">
+            <div className="flex flex-row relative basis-1/2 text-white">
+              <input
+                type="search"
+                name="search"
+                placeholder="Search"
+                className="bg-[#242627] h-10 px-5 pr-10 rounded-full text-sm focus:outline-none min-w-full"
+              />
+              <button
+                type="submit"
+                className="absolute right-0 top-0 mt-3 mr-4"
+              >
+                <svg
+                  className="h-4 w-4 fill-current"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                  version="1.1"
+                  id="Capa_1"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 56.966 56.966"
+                  xmlSpace="preserve"
+                  width="512px"
+                  height="512px"
+                >
+                  <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="flex flex-row items-center">
+            {/* <button type="">
+              <img
+                src="https://placehold.co/400"
+                className="h-10 w-10 rounded-full"
+                alt=""
+              />
+            </button> */}
+            {/* <div className="flex flex-col justify-center items-end">
+              <h3 className={`ml-3 text-white ${inter.className}`}>
+                Anonymous Panda
+              </h3>
+              <h4 className="text-lime-500">Online</h4>
+            </div>*/}
+
+            {account ? (
+              <h1 className="text-white">{account}</h1>
+            ) : (
+              <button
+                onClick={connectWallet}
+                className=" h-10 w-10 rounded-full ring-2"
+              >
+                LOGIN
+              </button>
+            )}
           </div>
         </div>
-
-        <div className=" ">
-          <button type="" > <img
-            src="profile.png"
-            class="w-24 mr-20 rounded-full"
-            alt="" />
-          </button></div>
-
-
       </div>
-      <div class="flex flex-row justify-start mb-11 bg-zinc-950 box-border border-8   min-w-screen rounded-lg">
-        <div className="rounded-lg flex flex-col bg-contain ">
-          <img className="" src="/banner4.jpg" alt=""></img>
-          <h1 class="">hhzxhcjggdzcj</h1>
+      <div className="flex flex-row justify-center mb-11 min-w-screen mx-10 my-10">
+        <div className="flex flex-col relative bg-cover">
+          <motion.img
+            initial={{ opacity: 0, translateX: -10 }}
+            whileInView={{ opacity: 1, translateX: 0 }}
+            className="rounded-2xl"
+            src="https://m.media-amazon.com/images/S/sonata-images-prod/PV_IN_TVOD_PussinBootsLastWish/48ee77aa-ae01-498a-9735-7860a7bfe1a4._UR3840,1440_SX1440_FMjpg_.jpeg"
+            alt=""
+          ></motion.img>
+          <div className="absolute top-20 left-40">
+            <motion.div
+              initial={{ opacity: 0, translateY: 10 }}
+              whileInView={{ opacity: 1, translateY: 0 }}
+            >
+              <h1 className={`${questrial.className} text-5xl text-white text`}>
+                Puss in Boots
+                <br />
+                The Last Wish
+              </h1>
+              <span className="text-gray-500">Trending in Kids</span>
+              <div className="my-[10vw]"></div>
+              <div className="flex flex-row mb-3 items-center">
+                <RiCheckboxCircleFill
+                  className="text-cyan-400 mr-3"
+                  size={32}
+                />{" "}
+                <span className="font-bold text-xl">Rated E for Everyone</span>
+              </div>
+              <div className="flex flex-row items-center space-x-5">
+                <Link
+                  href="/player/QmUdW4Ar3RPmWYnT2CcxpU6ZkiHtnZm2dgd2R58cHVf3vK"
+                  className="w-24 h-24 bg-white text-black rounded-full text-xl justify-center flex items-center"
+                >
+                  <FaPlay className="ml-3" size={50} />
+                </Link>
+                <h3 className="text-4xl font-bold">Play Movie</h3>
+              </div>
+            </motion.div>
+          </div>
           {/* <img className=" flex flex-row " src="/banner3.jpg" alt=""></img>  */}
         </div>
-
       </div>
-      <div class="flex flex-row justify-between bg-zinc-950  ">
-        <div className=" rounded-lg  ">
-          <img className=" h-20 " src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""></img>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Continue Watching</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+          {[...Array(10)].map((x, i) => (
+            <div className="aspect-video h-32 sm:h-48">
+              <img
+                className="object-cover rounded-xl hover:-translate-y-2 transition "
+                src="https://images-eu.ssl-images-amazon.com/images/S/atv-aps-images/encoded/THBY_S3/IN/en_IN/COVER_ART/CLEAN/LASERHOMELANDER._UR1920,1080_SX720_FMjpg_.jpg"
+              ></img>
+            </div>
+          ))}
         </div>
-        <div className="rounded-lg  ">
-          <img className="h-20" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""></img>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Trending</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+          {[...Array(10)].map((x, i) => (
+            <div className="aspect-video h-32 sm:h-48">
+              <img
+                className="object-cover rounded-xl hover:-translate-y-2 transition"
+                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+              ></img>
+            </div>
+          ))}
         </div>
-        <div className="rounded-lg ">
-          <img className="h-20" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""></img>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Suggested for you</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+          {[...Array(10)].map((x, i) => (
+            <div className="aspect-video h-32 sm:h-48">
+              <img
+                className="object-cover rounded-xl hover:-translate-y-2 transition"
+                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+              ></img>
+            </div>
+          ))}
         </div>
-        <div className="rounded-lg ">
-          <img className="h-20" src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt=""></img>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Lionsgate Play</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+          {[...Array(10)].map((x, i) => (
+            <div className="aspect-video h-32 sm:h-48">
+              <img
+                className="object-cover rounded-xl hover:-translate-y-2 transition"
+                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+              ></img>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Discovery+</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+          {[...Array(10)].map((x, i) => (
+            <div className="aspect-video h-32 sm:h-48">
+              <img
+                className="object-cover rounded-xl hover:-translate-y-2 transition"
+                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+              ></img>
+            </div>
+          ))}
         </div>
       </div>
     </div>
