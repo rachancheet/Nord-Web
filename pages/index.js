@@ -1,12 +1,13 @@
 import { Inter, Questrial, Poppins } from "next/font/google";
 import { FaPlay } from "react-icons/fa";
 import { RiCheckboxCircleFill } from "react-icons/ri";
+import {motion} from "framer-motion";
 const inter = Inter({ subsets: ["latin"] });
 const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 export default function Home() {
   return (
-    <div className="flex overflow-hidden flex-col min-h-screen justify-between bg-gradient-to-br from-[#080808] to-black text-white">
+    <div className="flex overflow-hidden flex-col min-h-screen justify-between bg-gradient-to-br from-[#080808] to-black text-white space-y-10">
       <div className="flex flex-row justify-center mt-3 ml-11 mr-11  ">
         <div className="mr-10">
           <img
@@ -65,13 +66,15 @@ export default function Home() {
       </div>
       <div className="flex flex-row justify-center mb-11 min-w-screen mx-10 my-10">
         <div className="flex flex-col relative bg-cover">
-          <img
+          <motion.img
+            initial={{opacity:0, translateX:-10}} 
+            whileInView={{opacity:1, translateX:0}}
             className="rounded-2xl"
             src="https://m.media-amazon.com/images/S/sonata-images-prod/PV_IN_TVOD_PussinBootsLastWish/48ee77aa-ae01-498a-9735-7860a7bfe1a4._UR3840,1440_SX1440_FMjpg_.jpeg"
             alt=""
-          ></img>
-          <div className="absolute top-20 left-40 ">
-            <div>
+          ></motion.img>
+          <div className="absolute top-20 left-40">
+            <motion.div initial={{opacity:0, translateY:10}} whileInView={{opacity:1, translateY:0}} >
               <h1 className={`${questrial.className} text-5xl text-white text`}>
                 Puss in Boots
               </h1>
@@ -90,30 +93,74 @@ export default function Home() {
                 </button>
                 <h3 className="text-4xl font-bold">Play Movie</h3>
               </div>
-            </div>
+            </motion.div>
           </div>
           {/* <img className=" flex flex-row " src="/banner3.jpg" alt=""></img>  */}
         </div>
       </div>
       <div className="flex flex-col mx-10 space-y-10">
         <h1 className={`text-3xl ${poppins.className} `}>Continue Watching</h1>
-        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5">
-          {{
-            [...Array(5)].map(()=>{
-              return (
-                <div className="aspect-video h-48">
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+            {[...Array(10)].map((x, i) =>
+                <div className="aspect-video h-32 sm:h-48">
                   <img
-                    className="object-cover rounded-xl"
+                    className="object-cover rounded-xl hover:-translate-y-2 transition "
                     src="https://images-eu.ssl-images-amazon.com/images/S/atv-aps-images/encoded/THBY_S3/IN/en_IN/COVER_ART/CLEAN/LASERHOMELANDER._UR1920,1080_SX720_FMjpg_.jpg"
                   ></img>
                 </div>
-              )
-            })
-          }}
-
-
-
-          
+              )}
+        </div>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Trending</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+            {[...Array(10)].map((x, i) =>
+                <div className="aspect-video h-32 sm:h-48">
+                  <img
+                    className="object-cover rounded-xl hover:-translate-y-2 transition"
+                    src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+                  ></img>
+                </div>
+              )}
+        </div>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Suggested for you</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+            {[...Array(10)].map((x, i) =>
+                <div className="aspect-video h-32 sm:h-48">
+                  <img
+                    className="object-cover rounded-xl hover:-translate-y-2 transition"
+                    src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+                  ></img>
+                </div>
+              )}
+        </div>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Lionsgate Play</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+            {[...Array(10)].map((x, i) =>
+                <div className="aspect-video h-32 sm:h-48">
+                  <img
+                    className="object-cover rounded-xl hover:-translate-y-2 transition"
+                    src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+                  ></img>
+                </div>
+              )}
+        </div>
+      </div>
+      <div className="flex flex-col mx-10 space-y-10">
+        <h1 className={`text-3xl ${poppins.className} `}>Discovery+</h1>
+        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+            {[...Array(10)].map((x, i) =>
+                <div className="aspect-video h-32 sm:h-48">
+                  <img
+                    className="object-cover rounded-xl hover:-translate-y-2 transition"
+                    src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
+                  ></img>
+                </div>
+              )}
         </div>
       </div>
     </div>
