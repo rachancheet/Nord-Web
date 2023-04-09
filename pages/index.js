@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { AppContext } from "../context/AppContext";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios"
+import axios from "axios";
 const inter = Inter({ subsets: ["latin"] });
 const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
@@ -13,16 +13,49 @@ export default function Home() {
   const { account, connectWallet, error } = useContext(AppContext);
   const [recom, setRecom] = useState([]);
 
+
+
+
+
+
+
+  const arr1 = [
+"bafybeibooo6mu6cz6kvc2uyp7emdvrzal43z35gdvtg5j5tb3q4admth6q",
+"bafybeicfveihyjkcwuhqmas2u47npan46zgyvoaridtuz3glbe7hrmyq3a",
+"bafybeifiigtviz7ebxpqrkga4a64bhqp3qoey7lkhtcx4msmr6ibh4cnre",
+"bafybeicbenqjcwkihtmvjtbwvdglbye4d4wqfflje3ur3v77ubcwz4cudi",
+"bafybeibsjify75chbqfej5rht44i6nt2662i6tlzh4jv7lkuxtbkcthcvi",
+"bafybeich27oro4xzrmy57ckl6idpd5u3zibtgbei3s65yvcicy7k7uq7sa " ]
+  const file = [
+    "batman v superman:dawn of justice",
+    "minions",
+    "conjuring",
+    "the godfather",
+    "the wolf of wall street",
+    "matrix",
+  ]
+  const title = [
+    "batman v superman:dawn of justice",
+    "minions",
+    "the conjuring",
+    "the godfather",
+    "the wolf of wall street",
+    "the matrix",
+  ]
+  const [show, setshow] = useState(0)
   useEffect(() => {
     if(account) {
-      console.log("https://youngturbulenttypes.zubairmh.repl.co/api/video_recommend/" + account);
-      axios.get("https://youngturbulenttypes.zubairmh.repl.co/api/video_recommend/" + account).then(data => {
-        console.log(data.data.posters_url);
-        setRecom(data.data.posters_url);
+      axios.get("http://127.0.0.1:5000/api/video_recommend/" + account).then((data )=> {
+      // console.log("----------\n");
+      console.log(data.data);
+      setRecom(data.data);
+      if(data.data.titles){
+        setshow(1);
+      }
       });
     }
 
-  }, [account]);
+  },[ account ]);
   return (
     <div className="flex overflow-hidden flex-col min-h-screen justify-between bg-gradient-to-br from-[#080808] to-black text-white space-y-10">
     {( account && (
@@ -121,7 +154,12 @@ export default function Home() {
               </div>
               <div className="flex flex-row items-center space-x-5">
                 <Link
-                  href="/player/QmUdW4Ar3RPmWYnT2CcxpU6ZkiHtnZm2dgd2R58cHVf3vK"
+                  href={{
+                    pathname: "/player/bafybeib7jpz7tgxucsdrt4hyneqsu337qilhvxjbgef4wql4f5vkkxy4ca",
+                    query: {
+                      "file_name":"a",
+                      "video_title":"puss in boot"}, // the data
+                  }}
                   className="w-24 h-24 bg-white text-black rounded-full text-xl justify-center flex items-center"
                 >
                   <FaPlay className="ml-3" size={50} />
@@ -139,12 +177,20 @@ export default function Home() {
           </h1>
           <div class="flex flex-row flex-nowrap  space-x-5 py-3">
             {
-              ["https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg" , "https://m.media-amazon.com/images/S/pv-target-images/2b42207373a560382da3dab5d904db4b0269a9b64ab713e1c086e63de174a70f._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/07a7af2f0cc37792b2eb0ee196b53dd10a39ed816fc6f61633116e65ad603745._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/9074a6bc13c832b4b25ca3a19759023931e8828ab3c9e21011f37fb278d01e58._UR1920,1080_SX720_FMjpg_.png","https://m.media-amazon.com/images/S/pv-target-images/6dea014e7c39ee12c67e5ad8cd7442d787366584802904deddc9a54cd3ad4d9f._UR1920,1080_SX720_FMjpg_.jpg"].map((x, i) => (
+              ["https://m.media-amazon.com/images/S/pv-target-images/b6efe50f19e1fc52763ec470f367d8d00e50ae489ae2c2e671f9eb00e7180ace._UR1920,1080_SX720_FMjpg_.jpg" , "https://m.media-amazon.com/images/S/pv-target-images/b5b82fa183bf0c371f6ef879d64813d3e74637b64144367ec1dca080749caca1._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/07a7af2f0cc37792b2eb0ee196b53dd10a39ed816fc6f61633116e65ad603745._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/1e970c0e42ba71ebd408f7cb22de09ff767349bd14d13c61061d0425a9ef8351._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/10107c4794fbde1a9478563232b035d79d3b2d8823314e21543ef99c4f20067c._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/3eb50ab78523d4d785a208d0cb697a7365a9ca634b00508fd50a7288d7e95b13._UR1920,1080_SX720_FMjpg_.jpg"].map((x, i) => (
               <div className="aspect-video h-44">
+                {/* {console.log(`https://${arr1[i]}.ipfs.w3s.link/ipfs/${arr1[i]}/${file[i]} \n`)} */}
+                <Link href={{
+                    pathname:`/player/${arr1[i]}`,
+                    query: {
+                      "file_name":file[i],
+                      "video_title":title[i]}, // the data
+                  }}>
                 <img
                   className="object-cover rounded-xl hover:-translate-y-2 transition"
                   src={x}
-                ></img>
+                  ></img>
+                  </Link>
               </div>
             ))}
           </div>
@@ -154,14 +200,24 @@ export default function Home() {
             Recommended for you
           </h1>
           <div class="flex flex-row flex-wrap space-x-5 py-3">
-              {recom.map((x, i) => (
+              {show&&( recom["posters_url"].map((x, i) => (
               <div className="aspect-[0.66666] h-80">
+                <Link
+                href={{
+                  pathname: `/player/bafybeicwekmlo3e5inrje3jmaajwdoixdnb7y57a5q72tf7od7ukcrc6ue`,
+                  query: {
+                    "file_name":recom["titles"][i],
+                    "video_title":recom["titles"][i]}, // the data
+                }}>
                 <img
                   className="object-cover rounded-xl hover:-translate-y-2 transition"
                   src={x}
-                ></img>
+                  ></img>
+                  </Link>
               </div>
-            ))}
+            ))
+            )
+            }
           </div>
         </div>
     </>))

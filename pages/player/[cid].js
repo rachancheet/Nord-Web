@@ -2,13 +2,25 @@
 import dynamic from "next/dynamic";
 import {BiArrowBack} from "react-icons/bi";
 import { useRouter } from 'next/router'
-import { useEffect } from "react";
+import { AppContext } from "../../context/AppContext";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import Link from "next/link";
 const ReactPlayer = dynamic(() => import("react-player/lazy"), { ssr: false });
 export default function() {
+  const { account, connectWallet, error } = useContext(AppContext);
     const router=useRouter();
     const { cid } = router.query
-    useEffect
+    const {video_title} = router.query;
+    const {file_name} = router.query;
+    // console.log(router.query)
+
+    
+    useEffect((ef)=>{
+        axios.get("http://127.0.0.1:5000/api/add_data/" + account,{params:{"video_title":video_title}}).then((data) => {
+            console.log(data)
+      });
+    },[cid])
     return (
         <>
             <div className="absolute text-white top-10 left-10">
@@ -17,7 +29,8 @@ export default function() {
                 </Link>
                 
             </div>
-            <ReactPlayer controls className="min-h-screen min-w-full bg-black flex justify-center items-center text-white" url={`http://localhost:8080/ipfs/${cid}`} />
+            <ReactPlayer controls className="min-h-screen min-w-full bg-black flex justify-center items-center text-white" url={`https://${cid}.ipfs.w3s.link/ipfs/${cid}/${file_name}.mp4`} />
+
         </>
             
 
