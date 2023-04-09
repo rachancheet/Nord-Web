@@ -4,12 +4,25 @@ import { RiCheckboxCircleFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { AppContext } from "../context/AppContext";
-import {useContext} from "react";
+import { useContext, useEffect, useState } from "react";
+import axios from "axios"
 const inter = Inter({ subsets: ["latin"] });
 const questrial = Questrial({ subsets: ["latin"], weight: "400" });
 const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 export default function Home() {
   const { account, connectWallet, error } = useContext(AppContext);
+  const [recom, setRecom] = useState(["xyz"]);
+
+  useEffect(() => {
+    if(account) {
+      console.log("http://localhost:5000/" + account);
+      axios.get("http://localhost:5000/" + account).then(data => {
+        console.log(data.data.posters_url);
+        setRecom(data.data.posters_url);
+      });
+    }
+
+  }, [account]);
   return (
     <div className="flex overflow-hidden flex-col min-h-screen justify-between bg-gradient-to-br from-[#080808] to-black text-white space-y-10">
       <div className="flex flex-row justify-center mt-3 ml-11 mr-11  ">
@@ -63,7 +76,7 @@ export default function Home() {
             </div>*/}
 
             {account ? (
-              <h1 className="text-white">{account}</h1>
+              <h1 className="text-white">Metamask: {account}</h1>
             ) : (
               <button
                 onClick={connectWallet}
@@ -117,71 +130,36 @@ export default function Home() {
           {/* <img className=" flex flex-row " src="/banner3.jpg" alt=""></img>  */}
         </div>
       </div>
-      <div className="flex flex-col mx-10 space-y-10">
-        <h1 className={`text-3xl ${poppins.className} `}>Continue Watching</h1>
-        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
-          {[...Array(10)].map((x, i) => (
-            <div className="aspect-video h-32 sm:h-48">
-              <img
-                className="object-cover rounded-xl hover:-translate-y-2 transition "
-                src="https://images-eu.ssl-images-amazon.com/images/S/atv-aps-images/encoded/THBY_S3/IN/en_IN/COVER_ART/CLEAN/LASERHOMELANDER._UR1920,1080_SX720_FMjpg_.jpg"
-              ></img>
-            </div>
-          ))}
+        <div className="flex flex-col mx-10 space-y-10">
+          <h1 className={`text-3xl ${poppins.className} `}>
+            Continue Watching
+          </h1>
+          <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+            {["https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/2b42207373a560382da3dab5d904db4b0269a9b64ab713e1c086e63de174a70f._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/07a7af2f0cc37792b2eb0ee196b53dd10a39ed816fc6f61633116e65ad603745._UR1920,1080_SX720_FMjpg_.jpg","https://m.media-amazon.com/images/S/pv-target-images/9074a6bc13c832b4b25ca3a19759023931e8828ab3c9e21011f37fb278d01e58._UR1920,1080_SX720_FMjpg_.png","https://m.media-amazon.com/images/S/pv-target-images/6dea014e7c39ee12c67e5ad8cd7442d787366584802904deddc9a54cd3ad4d9f._UR1920,1080_SX720_FMjpg_.jpg"].map((x, i) => (
+              <div className="aspect-video h-44">
+                <img
+                  className="object-cover rounded-xl hover:-translate-y-2 transition"
+                  src={x}
+                ></img>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col mx-10 space-y-10">
-        <h1 className={`text-3xl ${poppins.className} `}>Trending</h1>
-        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
-          {[...Array(10)].map((x, i) => (
-            <div className="aspect-video h-32 sm:h-48">
-              <img
-                className="object-cover rounded-xl hover:-translate-y-2 transition"
-                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
-              ></img>
-            </div>
-          ))}
+        <div className="flex flex-col mx-10 space-y-10">
+          <h1 className={`text-3xl ${poppins.className} `}>
+            Recommended for you
+          </h1>
+          <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
+              {recom.map((x, i) => (
+              <div className="aspect-[0.66666] h-80">
+                <img
+                  className="object-cover rounded-xl hover:-translate-y-2 transition"
+                  src={x}
+                ></img>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-col mx-10 space-y-10">
-        <h1 className={`text-3xl ${poppins.className} `}>Suggested for you</h1>
-        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
-          {[...Array(10)].map((x, i) => (
-            <div className="aspect-video h-32 sm:h-48">
-              <img
-                className="object-cover rounded-xl hover:-translate-y-2 transition"
-                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
-              ></img>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col mx-10 space-y-10">
-        <h1 className={`text-3xl ${poppins.className} `}>Lionsgate Play</h1>
-        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
-          {[...Array(10)].map((x, i) => (
-            <div className="aspect-video h-32 sm:h-48">
-              <img
-                className="object-cover rounded-xl hover:-translate-y-2 transition"
-                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
-              ></img>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col mx-10 space-y-10">
-        <h1 className={`text-3xl ${poppins.className} `}>Discovery+</h1>
-        <div class="flex flex-row flex-nowrap overflow-x-scroll space-x-5 py-3">
-          {[...Array(10)].map((x, i) => (
-            <div className="aspect-video h-32 sm:h-48">
-              <img
-                className="object-cover rounded-xl hover:-translate-y-2 transition"
-                src="https://m.media-amazon.com/images/S/pv-target-images/2755192ac73b7b4a52f50e3297813231e2dd086b9b090a17d6b72722717e05d9._UR1920,1080_SX720_FMjpg_.jpg"
-              ></img>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
