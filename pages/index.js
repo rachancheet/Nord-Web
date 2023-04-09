@@ -41,7 +41,10 @@ export default function Home() {
   useEffect(() => {
     if (account) {
       axios
-        .get("http://127.0.0.1:5000/api/video_recommend/" + account)
+        .get(
+          "https://youngturbulenttypes.zubairmh.repl.co/api/video_recommend/" +
+            account
+        )
         .then((data) => {
           // console.log("----------\n");
           console.log(data.data);
