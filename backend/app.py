@@ -38,14 +38,14 @@ def fetch_poster(movie_id):
     full_path = "https://image.tmdb.org/t/p/w500" + poster_path
     return full_path
 
-
-@app.route("/api/video_recommend/<wallet_id>", methods={"GET"})
-def func(wallet_id):
-    user = db.user.find_one({"wallet_id": wallet_id})
+@app.route("/<wallet>")
+def test(wallet):
+    print("loda")
+    user = db.user.find_one({"wallet_id": wallet})
 
     generic = {}
     if user is None:
-        db.user.insert_one({"wallet_id": wallet_id, "data": []})
+        db.user.insert_one({"wallet_id": wallet, "data": []})
         return jsonify(generic)
 
     recomendations = {
@@ -65,8 +65,43 @@ def func(wallet_id):
                 recomendations["titles"].append(new['title'][gh[0]])
                 recomendations["posters_url"].append(
                     fetch_poster(new['movie_id'][gh[0]]))
-                recomendations["desync_ids"].append(
-                    new['desync_id'][gh[0]])
+                recomendations["desync_ids"].append(0)
+        # print(index)
+        except:
+            pass
+        print(index)
+        # if index >= 0:
+    return jsonify(recomendations)
+
+
+@app.route("/api/video_recommend/<wallet>")
+def func(wallet):
+    print("loda")
+    user = db.user.find_one({"wallet_id": wallet})
+
+    generic = {}
+    if user is None:
+        db.user.insert_one({"wallet_id": wallet, "data": []})
+        return jsonify(generic)
+
+    recomendations = {
+        "titles": [],
+        "posters_url": [],
+        "desync_ids": [],
+    }
+    # user.data
+    for movie in user["data"]:
+        print(movie)
+        index = -2
+        try:
+            index = new[new['title'] == movie.lower()].index[0]
+            distances = sorted(
+                list(enumerate(similarity[index])), reverse=True, key=lambda x: x[1])
+            for gh in distances[1:4]:
+                recomendations["titles"].append(new['title'][gh[0]])
+                recomendations["posters_url"].append(
+                    fetch_poster(new['movie_id'][gh[0]]))
+                recomendations["desync_ids"].append(0)
         # print(index)
         except:
             pass
@@ -89,4 +124,4 @@ def func(wallet_id):
 if __name__ == '__main__':
     # print(similarity)
     # print(movie_list)
-    app.run()
+    app.run(debug=True)
