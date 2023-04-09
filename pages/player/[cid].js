@@ -17,7 +17,7 @@ export default function() {
 
     
     useEffect((ef)=>{
-        axios.get("http://127.0.0.1:5000/api/add_data/" + account,{params:{"video_title":video_title}}).then((data) => {
+        axios.get("https://youngturbulenttypes.zubairmh.repl.co/api/add_data/" + account,{params:{"video_title":video_title}}).then((data) => {
             console.log(data)
       });
     },[cid])
