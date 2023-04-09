@@ -15,8 +15,8 @@ export default function Home() {
 
   useEffect(() => {
     if(account) {
-      console.log("http://localhost:5000/" + account);
-      axios.get("http://localhost:5000/" + account).then(data => {
+      console.log("https://youngturbulenttypes.zubairmh.repl.co/api/video_recommend/" + account);
+      axios.get("https://youngturbulenttypes.zubairmh.repl.co/api/video_recommend/" + account).then(data => {
         console.log(data.data.posters_url);
         setRecom(data.data.posters_url);
       });
