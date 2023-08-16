@@ -1,23 +1,41 @@
 
+<h1> Winners at HackByte </h1>
+![1686055284716](https://github.com/rachancheet/Nord-Web/assets/55895940/f5c0afcf-68bf-46fe-98c1-129504271db9)
+
+
+
 <div align="center">
   <h1>🚀 Nord, The decentralized video streaming platform🚀</h1>
-  ![nord cover](https://user-images.githubusercontent.com/116816535/230758659-cc3080fd-33f9-4d27-b557-9d8287a03777.png)
-  <br>
-  ![webiste](https://github.com/Parag003/Nord-Web/assets/113838495/b732ebc9-2a38-4e1f-ac26-d83a14a0f568)
 
+![230758659-cc3080fd-33f9-4d27-b557-9d8287a03777](https://github.com/rachancheet/Nord-Web/assets/55895940/6cbf1807-9c1b-462d-bb54-6dc7503ef606)
+
+
+
+  
+  <br>
+
+![241261323-b732ebc9-2a38-4e1f-ac26-d83a14a0f568](https://github.com/rachancheet/Nord-Web/assets/55895940/54e29961-5e74-4e91-accc-ee4bc550511d)
+
+  
+  
 </div>
 
 <div align="center">
   <h1>🦊Metamask Intergration (WEB3 AUTH)🦊</h1>
-  ![WhatsApp Image 2023-05-26 at 15 12 25](https://github.com/Parag003/Nord-Web/assets/113838495/1b98d994-4c25-4ef4-bdce-6358aff8491f)
-  </div>
+  
+![241259773-1b98d994-4c25-4ef4-bdce-6358aff8491f](https://github.com/rachancheet/Nord-Web/assets/55895940/fa68df15-ca88-4a63-b9d9-1bd7477fa1e4)
+
+
+</div>
   <p> By leveraging Metamask, we provide a seamless and secure login experience for our users. Rather than creating traditional accounts that require personal information, our website allows users to log in using their Metamask wallet. This approach ensures that no sensitive data is stored on our servers, reducing the risk of data breaches and protecting user privacy.
 
 Metamask enables users to maintain full control over their personal information, as it securely stores their private keys locally on their device. When logging in, users are prompted to authorize the login transaction through Metamask, verifying their identity and granting access to our website. This decentralized login process eliminates the need for usernames and passwords, reducing the risk of credential theft and unauthorized access. </p>
 
 <div align="center">
   <h1>Recommendation Model </h1>
-![haunted search](https://github.com/Parag003/Nord-Web/assets/113838495/a17b4649-b787-4474-893f-2347ba465e8c)
+
+![241262805-a17b4649-b787-4474-893f-2347ba465e8c](https://github.com/rachancheet/Nord-Web/assets/55895940/acfde2bb-a391-47df-ad93-b114d499da33)
+
 
 </div>
 
