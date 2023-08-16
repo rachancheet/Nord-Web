@@ -1,6 +1,8 @@
 
 <h1> Winners at HackByte </h1>
-![1686055284716](https://github.com/rachancheet/Nord-Web/assets/55895940/f5c0afcf-68bf-46fe-98c1-129504271db9)
+
+![1686055284716](https://github.com/rachancheet/Nord-Web/assets/55895940/674eba7b-8ab7-4ff5-b957-6a17720aba54)
+
 
 
 
